@@ -47,4 +47,10 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(MainActivity.this, cadastro.class);
         startActivity(intent);
     }
+
+    public void entrarApp(View view) {
+        Intent intent;
+        intent = new Intent(MainActivity.this, home.class);
+        startActivity(intent);
+    }
 }
