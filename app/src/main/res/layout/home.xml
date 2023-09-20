@@ -5,7 +5,6 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
     android:visibility="visible">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -59,7 +58,7 @@
         android:layout_height="294dp"
         android:background="#38B46E"
         android:backgroundTint="#38B46E"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="59dp"
         tools:layout_editor_absoluteY="259dp" />
 
