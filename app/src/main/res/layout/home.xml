@@ -36,7 +36,8 @@
             android:backgroundTint="#38B56E"
             android:text="+"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:onClick="cadastrarGasto"/>
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
