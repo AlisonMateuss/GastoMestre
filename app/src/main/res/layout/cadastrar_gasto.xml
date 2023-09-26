@@ -118,7 +118,8 @@
                 android:contentDescription="categoria"
                 android:foregroundGravity="center_vertical|center"
                 android:gravity="center|center_horizontal"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/salvarGasto"
