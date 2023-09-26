@@ -13,8 +13,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.HomeBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class home extends AppCompatActivity {
+    FloatingActionButton add_btn,ganho_btn,gasto_btn;
+    boolean aBoolean=true;
 
     private HomeBinding binding;
 
@@ -34,6 +37,28 @@ public class home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_home);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        add_btn=findViewById(R.id.add_btn);
+        ganho_btn=findViewById(R.id.ganho_btn);
+        gasto_btn=findViewById(R.id.gasto_btn);
+
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (aBoolean){
+                    ganho_btn.show();
+                    gasto_btn.show();
+                    aBoolean =false;
+
+                }else {
+                    ganho_btn.hide();
+                    gasto_btn.hide();
+                    aBoolean =true;
+                }
+
+            }
+        });
+
     }
     public void cadastrarGasto(View v) {
         Intent intent;

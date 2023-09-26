@@ -10,12 +10,14 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="72dp"
+        android:layout_height="172dp"
+        android:layout_marginTop="-115dp"
         android:background="@drawable/nav_curve"
         android:elevation="20dp"
         android:paddingLeft="17dp"
         android:paddingRight="17dp"
         android:textAlignment="center"
+        android:tint="#FFFFFF"
         app:itemIconSize="28dp"
         app:itemIconTint="@drawable/drawer_item"
         app:itemPaddingBottom="5dp"
@@ -26,18 +28,72 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_host_fragment_home"
         app:menu="@menu/bottom_nav_menu">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#38B56E"
-            android:text="+"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            android:onClick="cadastrarGasto"/>
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="115dp"
+            android:gravity="center_horizontal"
+            android:tint="#FFFFFF"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/gasto_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:clickable="true"
+                android:contentDescription="gasto"
+                android:focusable="true"
+                android:rotation="180"
+                android:rotationY="180"
+                android:visibility="invisible"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/icon_gasto"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/ganho_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:background="#FBF7F7"
+                android:backgroundTint="#38b56e"
+                android:clickable="true"
+                android:contentDescription="ganho"
+                android:focusable="true"
+                android:foreground="@drawable/icon_ganho"
+                android:foregroundTint="#00000000"
+                android:tint="#FFFFFF"
+                android:visibility="invisible"
+                app:rippleColor="#F8F3F3"
+                app:srcCompat="@drawable/icon_ganho"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#38b56e"
+                android:clickable="true"
+                android:contentDescription="escolha"
+                android:focusable="true"
+                android:tint="@color/white"
+                app:srcCompat="@drawable/add_icon"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
