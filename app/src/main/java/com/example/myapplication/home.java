@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -32,5 +34,9 @@ public class home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_home);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
-
+    public void cadastrarGasto(View v) {
+        Intent intent;
+        intent = new Intent(home.this, cadastrar_gasto.class);
+        startActivity(intent);
+    }
 }
