@@ -5,5 +5,6 @@
         <item>Contas</item>
         <item>Investimento</item>
         <item>Compras</item>
+        <item>Outros</item>
     </string-array>
 </resources>
