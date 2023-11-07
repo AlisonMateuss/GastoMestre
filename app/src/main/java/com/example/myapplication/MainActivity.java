@@ -2,9 +2,11 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import com.example.myapplication.ui.home.HomeFragment;
+import com.gastomestre.myapplication.db.BancoController;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,11 +24,17 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
+    Button btnEntrar;
+    EditText txtEmailLogin, txtSenhaLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //setSupportActionBar(binding.toolbar);
+        btnEntrar = (Button) findViewById(R.id.btnEntrar);
+        txtEmailLogin = (EditText) findViewById(R.id.txtEmailLogin);
+        txtSenhaLogin = (EditText) findViewById(R.id.txtSenhaLogin);
 
-        // NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        //appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        btnEntrar.setOnClickListener(this);
     }
 
 
@@ -49,9 +57,27 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void entrarApp(View view) {
-        Intent intent;
-        intent = new Intent(MainActivity.this, home.class);
-        startActivity(intent);
+    @Override
+    public void onClick(View view) {
+        String email = txtEmailLogin.getText().toString();
+        String senha = txtSenhaLogin.getText().toString();
+
+        BancoController bd = new BancoController(getBaseContext());
+
+        Cursor dados = bd.carregaDadosParaLogin(email, senha) ;
+
+        if(dados.moveToFirst()){
+            Intent intent = new Intent(MainActivity.this, home.class);
+            String nome = dados.getString(1);
+            Bundle parametros = new Bundle();
+            parametros.putString("nome",email);
+            parametros.putString("email",email);
+            parametros.putString("senha", senha);
+            intent.putExtras(parametros);
+            startActivity(intent);
+        }else{
+            String msg= "Usuário e/ou Senha inválida!";
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+        }
     }
 }
