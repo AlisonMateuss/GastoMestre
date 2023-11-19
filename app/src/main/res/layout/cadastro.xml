@@ -9,10 +9,10 @@
     tools:context=".cadastro">
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/txtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nome"
+        android:layout_below="@+id/txtNome"
         android:layout_marginTop="12dp"
         android:background="@drawable/roundstyle"
         android:ems="10"
@@ -36,7 +36,7 @@
         app:srcCompat="@drawable/logo_login" />
 
     <EditText
-        android:id="@+id/nome"
+        android:id="@+id/txtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo"
@@ -52,26 +52,26 @@
         android:textSize="14dp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/txtSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/email"
+        android:layout_below="@+id/txtEmail"
         android:layout_marginTop="12dp"
         android:background="@drawable/roundstyle"
         android:ems="10"
         android:fontFamily="@font/roboto_medium"
         android:hint="Senha"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:padding="16dp"
         android:paddingLeft="16dp"
         android:textColorHint="#0C110F"
         android:textSize="14dp" />
 
     <Button
-        android:id="@+id/cadastrar"
+        android:id="@+id/btnCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/txtSenha"
         android:layout_marginTop="28dp"
         android:backgroundTint="#38B56E"
         android:gravity="center"
@@ -85,7 +85,7 @@
         android:id="@+id/entrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cadastrar"
+        android:layout_below="@+id/btnCadastrar"
         android:layout_marginTop="2dp"
         android:backgroundTint="#fff"
         android:fontFamily="@font/roboto_medium"
