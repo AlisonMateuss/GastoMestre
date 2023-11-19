@@ -17,7 +17,7 @@
         android:layout_marginTop="135dp"
         android:layout_marginEnd="20dp"
         android:padding="5sp"
-        android:background="@drawable/white_background"
+        android:background="@drawable/met"
         android:elevation="4dp"
         android:gravity="center"
         android:orientation="horizontal">
@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="270dp"
+            android:layout_width="32dp"
             android:layout_height="150dp"
             android:orientation="vertical">
 
@@ -184,6 +184,151 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/logo_sem_letras" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="22dp"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/meta_inicio_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+        <TextView
+            android:id="@+id/textView_meta3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto"
+            android:layoutDirection=""
+            android:text="VIAGEM"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp">
+
+
+            <TextView
+                android:id="@+id/textView_meta"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Porcentagem da meta alcançada"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textView_meta1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto"
+                android:layoutDirection=""
+                android:text="82%"
+                android:textColor="#fff"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:id="@+id/textView_meta"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto"
+                android:text="Dinheiro guardado para meta"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/textView_meta1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto"
+                android:layoutDirection=""
+                android:text="R$ 5.000,00"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/textView_meta"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto"
+                android:text="Ultimo valor guardado apra meta"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:layout_marginTop="7dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/meta_setter"/>
+            <TextView
+                android:id="@+id/textView_meta"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto"
+                android:text="R$ 400,00"
+                android:textColor="#fff"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
 
     </LinearLayout>
 
