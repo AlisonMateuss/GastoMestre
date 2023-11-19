@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.myapplication.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,6 +21,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class home extends AppCompatActivity {
     FloatingActionButton add_btn,ganho_btn,gasto_btn;
+    TextView txtUserName;
+
+    public static String userNameText;
+
     boolean aBoolean=true;
 
     private HomeBinding binding;
@@ -58,6 +66,11 @@ public class home extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        userNameText = intent.getStringExtra("nome");
+        Bundle parametros = intent.getExtras();
+        HomeFragment homeFrag = new HomeFragment();
+        homeFrag.setArguments(parametros);
     }
     public void cadastrarGasto(View v) {
         Intent intent;

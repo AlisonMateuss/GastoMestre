@@ -12,8 +12,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -68,12 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(dados.moveToFirst()){
             Intent intent = new Intent(MainActivity.this, home.class);
+            Intent intentHomeFrag = new Intent(MainActivity.this, HomeFragment.class);
             String nome = dados.getString(1);
             Bundle parametros = new Bundle();
-            parametros.putString("nome",email);
+            parametros.putString("nome",nome);
             parametros.putString("email",email);
             parametros.putString("senha", senha);
             intent.putExtras(parametros);
+            intentHomeFrag.putExtras(parametros);
             startActivity(intent);
         }else{
             String msg= "Usuário e/ou Senha inválida!";
