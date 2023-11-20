@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gastomestre.myapplication.db.BancoController;
+
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 /**
@@ -29,6 +33,7 @@ public class TabGanhos extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     public TabGanhos() {
         // Required empty public constructor
     }
@@ -42,6 +47,7 @@ public class TabGanhos extends Fragment {
      * @return A new instance of fragment TabGanhos.
      */
     // TODO: Rename and change types and number of parameters
+
     public static TabGanhos newInstance(String param1, String param2) {
         TabGanhos fragment = new TabGanhos();
         Bundle args = new Bundle();
@@ -60,6 +66,28 @@ public class TabGanhos extends Fragment {
         }
     }
 
+    public void addItemsToCategoryList(String categoriaParam, List<item_list> listName){
+        BancoController bd = new BancoController(getActivity().getBaseContext());
+
+        Cursor dados = bd.carregaGanhosPeloId(MainActivity.IdUserLogado, categoriaParam);
+
+        int position = 0;
+
+        while(dados.moveToPosition(position)){
+            Double valorGasto = dados.getDouble(0);
+            String dataGasto = dados.getString(1);
+            Formatter valorGastoFormatter = new Formatter();
+            valorGastoFormatter.format("%.2f", valorGasto);
+            String valorGastoFormatado = "R$ " + valorGastoFormatter;
+            valorGastoFormatado = valorGastoFormatado.replace(".", ",");
+            //String categoria = dados.getString(2);
+
+            listName.add(new item_list(valorGastoFormatado, dataGasto));
+
+            position = position + 1;
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,56 +97,26 @@ public class TabGanhos extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        RecyclerView recyclerViewPoupanca = (RecyclerView) getView().findViewById(R.id.poupancaList);
-
-        List<item_list> itemsPoupanca = new ArrayList<item_list>();
-
-        itemsPoupanca.add(new item_list ("R$ -300,00", "23/09/2023"));
-        itemsPoupanca.add(new item_list ("R$ -500,00", "25/09/2023"));
-        itemsPoupanca.add(new item_list ("R$ -700,00", "27/09/2023"));
-        itemsPoupanca.add(new item_list ("R$ -590,00", "07/08/2023"));
-        itemsPoupanca.add(new item_list ("R$ -200,00", "10/10/2023"));
-
-        recyclerViewPoupanca.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewPoupanca.setAdapter(new MyAdapter(getActivity().getApplicationContext(), itemsPoupanca));
-
-        RecyclerView recyclerViewContas = (RecyclerView) getView().findViewById(R.id.contasList);
-
-        List<item_list> itemsContas = new ArrayList<item_list>();
-
-        itemsContas.add(new item_list ("R$ -700,00", "16/06/2023"));
-        itemsContas.add(new item_list ("R$ -590,00", "07/08/2023"));
-        itemsContas.add(new item_list ("R$ -200,00", "10/10/2023"));
-        itemsContas.add(new item_list ("R$ -590,00", "07/08/2023"));
-        itemsContas.add(new item_list ("R$ -200,00", "10/10/2023"));
-
-        recyclerViewContas.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewContas.setAdapter(new MyAdapter(getActivity().getApplicationContext(), itemsContas));
-
+        RecyclerView recyclerViewSalario = (RecyclerView) getView().findViewById(R.id.salarioList);
         RecyclerView recyclerViewInvestimento = (RecyclerView) getView().findViewById(R.id.investimentoList);
+        RecyclerView recyclerViewVendas = (RecyclerView) getView().findViewById(R.id.vendasList);
 
+        List<item_list> itemsSalario = new ArrayList<item_list>();
         List<item_list> itemsInvestimento = new ArrayList<item_list>();
+        List<item_list> itemsVendas = new ArrayList<item_list>();
 
-        itemsInvestimento.add(new item_list ("R$ -900,00", "20/09/2023"));
-        itemsInvestimento.add(new item_list ("R$ -160,00", "10/05/2023"));
-        itemsInvestimento.add(new item_list ("R$ -50,00", "10/12/2023"));
-        itemsInvestimento.add(new item_list ("R$ -50,00", "10/12/2023"));
-        itemsInvestimento.add(new item_list ("R$ -50,00", "10/12/2023"));
+        addItemsToCategoryList("Salário", itemsSalario);
+        addItemsToCategoryList("Investimento", itemsInvestimento);
+        addItemsToCategoryList("Vendas", itemsVendas);
+
+        recyclerViewSalario.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewSalario.setAdapter(new MyAdapter(getActivity().getApplicationContext(), itemsSalario));
 
         recyclerViewInvestimento.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewInvestimento.setAdapter(new MyAdapter(getActivity().getApplicationContext(), itemsInvestimento));
 
-        RecyclerView recyclerViewCompras = (RecyclerView) getView().findViewById(R.id.comprasList);
+        recyclerViewVendas.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewVendas.setAdapter(new MyAdapter(getActivity().getApplicationContext(), itemsVendas));
 
-        List<item_list> itemsCompras = new ArrayList<item_list>();
-
-        itemsCompras.add(new item_list ("R$ -900,00", "20/09/2023"));
-        itemsCompras.add(new item_list ("R$ -160,00", "10/05/2023"));
-        itemsCompras.add(new item_list ("R$ -50,00", "10/12/2023"));
-        itemsCompras.add(new item_list ("R$ -50,00", "10/12/2023"));
-        itemsCompras.add(new item_list ("R$ -50,00", "10/12/2023"));
-
-        recyclerViewCompras.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerViewCompras.setAdapter(new MyAdapter(getActivity().getApplicationContext(), itemsCompras));
     }
 }

@@ -65,7 +65,7 @@
                 android:backgroundTint="#38b56e"
                 android:clickable="true"
                 android:contentDescription="ganho"
-                android:onClick="cadastrarGasto"
+                android:onClick="cadastrarGanho"
                 android:focusable="true"
                 android:foreground="@drawable/icon_ganho"
                 android:foregroundTint="#00000000"

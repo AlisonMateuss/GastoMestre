@@ -1,8 +1,24 @@
 package com.example.myapplication;
 
-public class item_list {
+import android.os.Bundle;
+import android.widget.TextView;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class item_list extends AppCompatActivity {
     String value;
     String date;
+
+    TextView txtValor;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.item_list);
+    }
+
 
     public item_list(String value, String date) {
         this.value = value;

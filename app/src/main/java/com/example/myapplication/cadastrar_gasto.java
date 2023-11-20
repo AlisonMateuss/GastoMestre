@@ -23,6 +23,7 @@ import com.gastomestre.myapplication.db.BancoController;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -122,15 +123,17 @@ public class cadastrar_gasto extends AppCompatActivity implements AdapterView.On
 
     }
 
-    public void salvarGasto(View view) {
+    public void salvarGasto(View view) throws ParseException {
         DatePicker simpleDatePicker = (DatePicker)findViewById(R.id.simpleDatePicker);
         txtValorGasto = (EditText) findViewById(R.id.valorGasto);
         String txtValorGastoStr = txtValorGasto.getText().toString().replaceAll("[R$\\s+]", "");
         String valorGastoString = txtValorGastoStr.replace(",", ".");
-        Double valorGasto = Double.parseDouble(valorGastoString.toString());
-        Formatter valorGastoFormatado = new Formatter();
-        valorGastoFormatado.format("%.2f", valorGasto);
-        Double valorGastoDouble = Double.parseDouble(valorGastoFormatado.toString());
+        final Locale myLocale = new Locale("pt", "BR");
+        NumberFormat format = NumberFormat.getInstance(myLocale);
+        Double valorGastoDouble = format.parse(txtValorGastoStr).doubleValue();
+        Formatter valorGastoFormatter = new Formatter();
+        valorGastoFormatter.format("%.2f", valorGastoDouble);
+        Double valorGastoDoubleFinal = Double.parseDouble(valorGastoFormatter.toString());
 
         String dataGasto = simpleDatePicker.getDayOfMonth() + "/" + (simpleDatePicker.getMonth() + 1) + "/" + simpleDatePicker.getYear() ;
 
@@ -140,13 +143,13 @@ public class cadastrar_gasto extends AppCompatActivity implements AdapterView.On
 
         salvarGasto = (Button) findViewById(R.id.salvarGasto);
 
-        Log.d("Teste valor", valorGastoFormatado.toString());
+        Log.d("Teste valor", valorGastoDoubleFinal.toString());
         Log.d("Teste data", dataGasto);
         Log.d("Teste categoria", categoria);
 
         BancoController bd = new BancoController(getBaseContext());
 
-        String resultado = bd.cadastraGasto(MainActivity.IdUserLogado, valorGastoDouble, dataGasto,
+        String resultado = bd.cadastraGasto(MainActivity.IdUserLogado, valorGastoDoubleFinal, dataGasto,
                 categoria) ;
 
         Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();

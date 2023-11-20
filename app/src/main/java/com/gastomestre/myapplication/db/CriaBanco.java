@@ -27,6 +27,13 @@ public class CriaBanco extends SQLiteOpenHelper {
                 + "email text,"
                 + "senha text)";
         db.execSQL(sql);
+        String sqlGanho = "CREATE TABLE ganho ("
+                + "id_ganho integer primary key autoincrement,"
+                + "id_user integer,"
+                + "valor_ganho numeric,"
+                + "data_ganho text,"
+                + "categoria text)";
+        db.execSQL(sqlGanho);
     }
 
     @Override

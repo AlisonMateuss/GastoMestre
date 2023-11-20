@@ -77,4 +77,10 @@ public class home extends AppCompatActivity {
         intent = new Intent(home.this, cadastrar_gasto.class);
         startActivity(intent);
     }
+
+    public void cadastrarGanho(View v) {
+        Intent intent;
+        intent = new Intent(home.this, cadastrar_ganho.class);
+        startActivity(intent);
+    }
 }
