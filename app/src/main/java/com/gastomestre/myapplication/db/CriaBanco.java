@@ -14,12 +14,14 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE contatos ("
-                + "codigo integer primary key autoincrement,"
-                + "nome text,"
-                + "email text)";
-        db.execSQL(sql);
-        sql = "CREATE TABLE usuarios ("
+        String sqlGasto = "CREATE TABLE gasto ("
+                + "id_gasto integer primary key autoincrement,"
+                + "id_user integer,"
+                + "valor_gasto numeric,"
+                + "data_gasto text,"
+                + "categoria text)";
+        db.execSQL(sqlGasto);
+        String sql = "CREATE TABLE usuarios ("
                 + "codigo integer primary key autoincrement,"
                 + "nome text,"
                 + "email text,"
@@ -29,7 +31,7 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS contatos");
+        db.execSQL("DROP TABLE IF EXISTS gasto");
         db.execSQL("DROP TABLE IF EXISTS usuarios");
         onCreate(db);
     }

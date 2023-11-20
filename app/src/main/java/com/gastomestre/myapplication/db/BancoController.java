@@ -31,6 +31,26 @@ public class BancoController {
             return "Registro Inserido com sucesso";
     }
 
+    public String cadastraGasto(int idUser, Double valorGasto, String dataGasto, String categoria) {
+        ContentValues valores;
+        long resultado;
+        db = banco.getWritableDatabase();
+
+        valores = new ContentValues();
+        valores.put("id_user", idUser);
+        valores.put("valor_gasto", valorGasto);
+        valores.put("data_gasto", dataGasto);
+        valores.put("categoria", categoria);
+
+        resultado = db.insert("gasto", null, valores);
+        db.close();
+
+        if (resultado == -1)
+            return "Erro ao inserir registro";
+        else
+            return "Gasto cadastrado com sucesso";
+    }
+
     public Cursor carregaDadosParaLogin(String email, String senha) {
         Cursor cursor;
         String[] campos = { "codigo", "nome", "email","senha" };
@@ -53,6 +73,22 @@ public class BancoController {
         String where = "codigo=" + id;
         db = banco.getReadableDatabase();
         cursor = db.query("contatos", campos, where, null, null, null,
+                null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        db.close();
+        return cursor;
+    }
+
+
+    public Cursor carregaGastosPeloId(int id, String categoria) {
+        Cursor cursor;
+        String[] campos = { "valor_gasto", "data_gasto", "categoria" };
+        String where = "id_user=" + id + " AND categoria='" + categoria + "'";
+        db = banco.getReadableDatabase();
+        cursor = db.query("gasto", campos, where, null, null, null,
                 null, null);
         if (cursor != null) {
             cursor.moveToFirst();

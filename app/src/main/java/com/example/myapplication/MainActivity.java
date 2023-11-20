@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    public static int IdUserLogado;
+
     Button btnEntrar;
     EditText txtEmailLogin, txtSenhaLogin;
 
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(dados.moveToFirst()){
             Intent intent = new Intent(MainActivity.this, home.class);
             Intent intentHomeFrag = new Intent(MainActivity.this, HomeFragment.class);
+            int idUser = dados.getInt(0);
+            IdUserLogado = idUser;
             String nome = dados.getString(1);
             Bundle parametros = new Bundle();
             parametros.putString("nome",nome);

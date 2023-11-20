@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.database.Cursor;
 import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 
@@ -7,16 +8,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.gastomestre.myapplication.db.BancoController;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.Formatter;
 import java.util.Locale;
 
 public class cadastrar_gasto extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -24,6 +31,12 @@ public class cadastrar_gasto extends AppCompatActivity implements AdapterView.On
     private Spinner spinnerTextSize;
 
     private String current = "";
+
+    EditText txtValorGasto;
+
+    Spinner txtCategoriaGasto;
+
+    Button salvarGasto;
 
 
     //public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -47,7 +60,7 @@ public class cadastrar_gasto extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastrar_gasto);
 
-        spinnerTextSize = findViewById(R.id.spinnerTextSize);
+        spinnerTextSize = findViewById(R.id.txtCategoriaGasto);
         EditText inputValor = (EditText) findViewById(R.id.valorGasto);
 
         DatePicker simpleDatePicker = (DatePicker)findViewById(R.id.simpleDatePicker); // initiate a date picker
@@ -93,6 +106,9 @@ public class cadastrar_gasto extends AppCompatActivity implements AdapterView.On
 
         Long a = Long.parseLong("999999999999999999");
         System.out.println(NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(a));
+
+
+
     }
 
 
@@ -103,6 +119,37 @@ public class cadastrar_gasto extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void salvarGasto(View view) {
+        DatePicker simpleDatePicker = (DatePicker)findViewById(R.id.simpleDatePicker);
+        txtValorGasto = (EditText) findViewById(R.id.valorGasto);
+        String txtValorGastoStr = txtValorGasto.getText().toString().replaceAll("[R$\\s+]", "");
+        String valorGastoString = txtValorGastoStr.replace(",", ".");
+        Double valorGasto = Double.parseDouble(valorGastoString.toString());
+        Formatter valorGastoFormatado = new Formatter();
+        valorGastoFormatado.format("%.2f", valorGasto);
+        Double valorGastoDouble = Double.parseDouble(valorGastoFormatado.toString());
+
+        String dataGasto = simpleDatePicker.getDayOfMonth() + "/" + (simpleDatePicker.getMonth() + 1) + "/" + simpleDatePicker.getYear() ;
+
+        txtCategoriaGasto = (Spinner) findViewById(R.id.txtCategoriaGasto);
+
+        String categoria = txtCategoriaGasto.getSelectedItem().toString();
+
+        salvarGasto = (Button) findViewById(R.id.salvarGasto);
+
+        Log.d("Teste valor", valorGastoFormatado.toString());
+        Log.d("Teste data", dataGasto);
+        Log.d("Teste categoria", categoria);
+
+        BancoController bd = new BancoController(getBaseContext());
+
+        String resultado = bd.cadastraGasto(MainActivity.IdUserLogado, valorGastoDouble, dataGasto,
+                categoria) ;
+
+        Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
     }
 }
