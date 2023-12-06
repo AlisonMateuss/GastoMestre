@@ -22,4 +22,9 @@
         android:name="com.example.myapplication.ui.notifications.GastoFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/gasto" />
+    <fragment
+        android:id="@+id/user_menuItem"
+        android:name="com.example.myapplication.Perfil"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_perfil" />
 </navigation>

@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(dados.moveToFirst()){
             Intent intent = new Intent(MainActivity.this, home.class);
             Intent intentHomeFrag = new Intent(MainActivity.this, HomeFragment.class);
+            Intent intentPerfil = new Intent(MainActivity.this, Perfil.class);
             String nome = dados.getString(1);
             Bundle parametros = new Bundle();
             parametros.putString("nome",nome);
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             parametros.putString("senha", senha);
             intent.putExtras(parametros);
             intentHomeFrag.putExtras(parametros);
+            intentPerfil.putExtras(parametros);
             startActivity(intent);
         }else{
             String msg= "Usuário e/ou Senha inválida!";
